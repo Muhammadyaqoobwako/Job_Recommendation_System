@@ -20,6 +20,7 @@ An intelligent AI-powered career recommendation system that analyzes your skills
 ## ✨ Features
 
 ### Core Functionality
+
 - **AI-Powered Job Matching**: Uses TF-IDF vectorization and cosine similarity to recommend jobs
 - **Skill Assessment**: Interactive assessment forms to evaluate user skills and preferences
 - **Career Guidance**: Personalized job recommendations based on skills and interests
@@ -27,6 +28,7 @@ An intelligent AI-powered career recommendation system that analyzes your skills
 - **CORS Enabled**: Secure cross-origin requests between frontend and backend
 
 ### Frontend Features
+
 - **Responsive Design**: Mobile-first design that works on all devices
 - **Modern UI/UX**: Gradient effects, smooth animations, and enhanced visual hierarchy
 - **Dark/Light Theme Toggle**: Theme switcher for comfortable viewing
@@ -34,6 +36,7 @@ An intelligent AI-powered career recommendation system that analyzes your skills
 - **Results Dashboard**: Detailed job recommendations with match scores
 
 ### AI/ML Features
+
 - **TF-IDF Vectorization**: Text feature extraction for job descriptions
 - **Cosine Similarity**: Similarity matching between user profiles and job descriptions
 - **Data Preprocessing**: Robust text cleaning and salary parsing
@@ -69,6 +72,7 @@ Job_Recommendation_System/
 ## 🛠️ Technology Stack
 
 ### Backend
+
 - **Python 3.x** - Programming language
 - **Flask** - Web framework for API server
 - **Flask-CORS** - Cross-Origin Resource Sharing
@@ -78,12 +82,14 @@ Job_Recommendation_System/
 - **pickle** - Model serialization
 
 ### Frontend
+
 - **HTML5** - Semantic markup
 - **CSS3** - Responsive styling with gradients and animations
 - **JavaScript (Vanilla)** - Frontend logic without dependencies
 - **Fetch API** - Backend communication
 
 ### Data & ML
+
 - **TF-IDF Vectorizer** - Text feature extraction
 - **Cosine Similarity** - Job-candidate matching algorithm
 - **Pandas DataFrames** - Data processing
@@ -91,17 +97,20 @@ Job_Recommendation_System/
 ## 📦 Installation
 
 ### Prerequisites
+
 - Python 3.7 or higher
 - Git
 - Modern web browser
 
 ### Step 1: Clone the Repository
+
 ```bash
 git clone https://github.com/Muhammadyaqoobwako/Job_Recommendation_System.git
 cd Job_Recommendation_System
 ```
 
 ### Step 2: Create Virtual Environment (Optional but Recommended)
+
 ```bash
 # On Windows
 python -m venv venv
@@ -113,11 +122,13 @@ source venv/bin/activate
 ```
 
 ### Step 3: Install Dependencies
+
 ```bash
 pip install flask flask-cors pandas numpy scikit-learn
 ```
 
 ### Step 4: Verify Installation
+
 ```bash
 python -c "import flask, pandas, sklearn; print('All dependencies installed successfully!')"
 ```
@@ -125,6 +136,7 @@ python -c "import flask, pandas, sklearn; print('All dependencies installed succ
 ## ⚙️ Configuration
 
 ### Backend Configuration
+
 The server can be configured in `model_server.py`:
 
 ```python
@@ -137,6 +149,7 @@ CSV_PATH = 'job_recommendation_dataset.csv'
 ```
 
 ### Environment Variables
+
 ```bash
 # Override default dataset path
 set JOBS_CSV=path/to/your/dataset.csv
@@ -146,9 +159,11 @@ python model_server.py path/to/dataset.csv
 ```
 
 ### Frontend Configuration
+
 Update API endpoint in `frontend/js/app.js` if needed:
+
 ```javascript
-const API_URL = 'http://localhost:5000/api';
+const API_URL = "http://localhost:5000/api";
 ```
 
 ## 🚀 Usage
@@ -156,16 +171,19 @@ const API_URL = 'http://localhost:5000/api';
 ### Starting the Backend Server
 
 #### Option 1: Run with Default Settings
+
 ```bash
 python model_server.py
 ```
 
 #### Option 2: Run with Custom Dataset
+
 ```bash
 python model_server.py path/to/custom_dataset.csv
 ```
 
 #### Option 3: Using Environment Variable
+
 ```bash
 set JOBS_CSV=path/to/dataset.csv
 python model_server.py
@@ -176,9 +194,11 @@ Server will start at: `http://localhost:5000`
 ### Accessing the Frontend
 
 #### Option 1: Direct File Access
+
 Open `frontend/index.html` directly in your web browser
 
 #### Option 2: Using a Local Server (Recommended)
+
 ```bash
 # Using Python
 python -m http.server 8000 --directory frontend
@@ -207,6 +227,7 @@ Then visit: `http://localhost:8000`
 ## 📡 API Endpoints
 
 ### Base URL
+
 ```
 http://localhost:5000
 ```
@@ -214,12 +235,14 @@ http://localhost:5000
 ### Endpoints
 
 #### 1. Health Check
+
 ```
 GET /
 Response: Welcome message
 ```
 
 #### 2. Get Recommendations
+
 ```
 POST /api/recommend
 Content-Type: application/json
@@ -253,12 +276,14 @@ Response:
 ```
 
 #### 3. Get All Jobs
+
 ```
 GET /api/jobs
 Response: List of all available jobs in dataset
 ```
 
 #### 4. Search Jobs
+
 ```
 POST /api/search
 Content-Type: application/json
@@ -275,36 +300,42 @@ Response: Filtered list of matching jobs
 ## 🎨 Frontend Pages
 
 ### 1. **index.html** - Home Page
+
 - Hero section with project overview
 - Feature highlights
 - Call-to-action for assessment
 - Navigation to other pages
 
 ### 2. **assessment.html** - Assessment Form
+
 - Multi-step form for user input
 - Skills and preferences collection
 - Form validation
 - Smooth transitions between steps
 
 ### 3. **result.html** - Results Page
+
 - Displays job recommendations
 - Match score visualization
 - Job cards with key information
 - Sorting and filtering options
 
 ### 4. **details.html** - Job Details
+
 - Full job description
 - Company information
 - Salary details
 - Application links
 
 ### 5. **about.html** - About Section
+
 - Project description
 - Team information
 - Technology stack overview
 - How the system works
 
 ### 6. **contact.html** - Contact Page
+
 - Contact form
 - Social media links
 - Support information
@@ -312,11 +343,13 @@ Response: Filtered list of matching jobs
 ## 📊 Dataset
 
 ### Dataset Information
+
 - **File**: `job_recommendation_dataset.csv`
 - **Records**: 51,000+ job postings
 - **Columns**: Job title, company, description, location, salary, requirements, etc.
 
 ### Data Features
+
 - Job title and description
 - Company information
 - Location and remote work options
@@ -326,7 +359,9 @@ Response: Filtered list of matching jobs
 - Industry and sector information
 
 ### Data Preprocessing
+
 The system automatically:
+
 - Cleans text data (lowercase, removes special characters)
 - Parses salary information
 - Handles missing values
@@ -360,6 +395,7 @@ The system automatically:
 ## 🔧 Troubleshooting
 
 ### Port Already in Use
+
 ```bash
 # Find and kill process using port 5000
 lsof -ti:5000 | xargs kill -9  # macOS/Linux
@@ -367,22 +403,28 @@ netstat -ano | findstr :5000   # Windows
 ```
 
 ### CORS Errors
+
 Ensure Flask-CORS is installed:
+
 ```bash
 pip install flask-cors
 ```
 
 ### Missing Dataset
+
 Verify `job_recommendation_dataset.csv` exists in the project root directory.
 
 ### Slow Recommendations
+
 - Check dataset size
 - Verify TF-IDF model is loaded
 - Ensure sufficient system memory
 - Consider reducing dataset size for testing
 
 ### Import Errors
+
 Reinstall all dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -390,6 +432,7 @@ pip install -r requirements.txt
 ## 📝 Model Files
 
 ### Pickle Files
+
 - **jobs_meta.pkl**: Serialized job metadata for fast loading
 - **tfidf_vectorizer.pkl**: Pre-trained TF-IDF vectorizer for text feature extraction
 
@@ -425,14 +468,17 @@ These files ensure faster startup and consistent recommendation quality.
 ## 📚 Learning Resources
 
 ### Machine Learning
+
 - TF-IDF: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 - Cosine Similarity: https://en.wikipedia.org/wiki/Cosine_similarity
 
 ### Web Development
+
 - Flask Documentation: https://flask.palletsprojects.com/
 - Flask-CORS: https://flask-cors.readthedocs.io/
 
 ### Tools & Libraries
+
 - Pandas: https://pandas.pydata.org/docs/
 - scikit-learn: https://scikit-learn.org/stable/
 
@@ -443,6 +489,7 @@ This project is open-source and available under the MIT License. See LICENSE fil
 ## 👤 Author
 
 **Muhammad Yaqoob**
+
 - Email: muhammadyaqoobwako@gmail.com
 - GitHub: [@Muhammadyaqoobwako](https://github.com/Muhammadyaqoobwako)
 - Project: [Job Recommendation System](https://github.com/Muhammadyaqoobwako/Job_Recommendation_System)
@@ -468,6 +515,7 @@ Contributions are welcome! Please follow these steps:
 ## 📞 Support
 
 For issues, questions, or suggestions:
+
 1. Open an issue on GitHub
 2. Email: muhammadyaqoobwako@gmail.com
 3. Check FRONTEND_IMPROVEMENTS.md for UI/UX details
