@@ -1,0 +1,122 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="AI-powered career recommendation system to find your perfect job match"
+    />
+    <title>AI Career Guide — Find Your Perfect Career</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="theme-color" content="#6C63FF" />
+  </head>
+  <body class="theme-light">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html">
+          <span style="font-size: 24px"></span>
+          <span>AI Career Guide</span>
+        </a>
+        <nav>
+          <a href="about.html">About</a>
+          <a href="assessment.html" class="btn-cta">Start Assessment</a>
+          <a href="contact.html">Contact</a>
+          <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+            🌙
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-left">
+            <h1>Find the career built for you — powered by AI</h1>
+            <p>
+              Smart, data-driven career recommendations based on your skills,
+              interests, and market trends. Personalized roadmaps, course
+              suggestions and growth insights in just 5 minutes.
+            </p>
+            <div class="hero-actions">
+              <a href="assessment.html" class="button large primary"
+                >Start Free Assessment</a
+              >
+              <a href="about.html" class="button large ghost">Learn More</a>
+            </div>
+            <ul class="features">
+              <li>AI-powered skill matching</li>
+              <li>Real-time market insights</li>
+              <li>Personalized learning paths</li>
+            </ul>
+          </div>
+          <div class="hero-right">
+            <div class="card mockup featured-thumbnail">
+              <img src="assets/placeholder.png" alt="mockup" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cards container">
+        <article class="feature-card">
+          <h3>🎯 Smart Matching</h3>
+          <p>
+            We use advanced AI and semantic matching to align your unique skills
+            with career paths that truly fit your profile.
+          </p>
+        </article>
+        <article class="feature-card">
+          <h3>📚 Roadmaps & Courses</h3>
+          <p>
+            Get clear, step-by-step learning paths and access to curated courses
+            recommended by industry experts.
+          </p>
+        </article>
+        <article class="feature-card">
+          <h3>📈 Market Trends</h3>
+          <p>
+            Stay ahead with real-time market insights, salary ranges, and growth
+            opportunities for every recommended role.
+          </p>
+        </article>
+      </section>
+
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-card primary-theme">
+            <div class="cta-content">
+              <h2>Ready to explore your perfect career?</h2>
+              <p class="muted">
+                Join thousands who have found their ideal career match with our
+                AI-powered assessment.
+              </p>
+              <a href="assessment.html" class="button large primary"
+                >Start Your Journey</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> AI Career Guide</div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/app.js">
+      const data = JSON.parse(localStorage.getItem("career_recs"))
+    </script>
+  </body>
+</html>

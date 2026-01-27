@@ -1,0 +1,123 @@
+<!-- assessment.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Assessment — AI Career Guide</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="theme-light">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="logo" class="logo" />
+          <span>AI Career Guide</span>
+        </a>
+        <nav>
+          <a href="about.html">About</a>
+          <a href="assessment.html" class="btn-cta">Start Assessment</a>
+          <a href="contact.html">Contact</a>
+          <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+            🌙
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page">
+      <h1>Career Assessment</h1>
+      <p class="muted">
+        Complete the quick assessment to receive personalized career
+        suggestions.
+      </p>
+
+      <div class="assessment-card">
+        <div class="progress">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <form id="multiStepForm" class="multi-step">
+          <!-- Step 1 -->
+          <fieldset class="step active" data-step="1">
+            <legend>Basic</legend>
+            <label>
+              Full name
+              <input
+                type="text"
+                id="name"
+                placeholder="e.g. Ali Khan"
+                required
+              />
+            </label>
+            <label>
+              Education level
+              <select id="education">
+                <option>High School</option>
+                <option>Diploma</option>
+                <option>Bachelor's</option>
+                <option>Master's</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <div class="step-actions">
+              <button type="button" class="btn" data-next>Next</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 2 -->
+          <fieldset class="step" data-step="2">
+            <legend>Skills</legend>
+            <p class="muted">Select skills you have (choose multiple)</p>
+            <div class="chips" id="skillsList">
+              <!-- skill chips injected by JS -->
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn ghost" data-prev>Back</button>
+              <button type="button" class="btn" data-next>Next</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 3 -->
+          <fieldset class="step" data-step="3">
+            <legend>Interests</legend>
+            <p class="muted">Pick areas you enjoy</p>
+            <div class="chips" id="interestsList">
+              <!-- interest chips injected by JS -->
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn ghost" data-prev>Back</button>
+              <button type="button" class="btn" data-next>Next</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 4 -->
+          <fieldset class="step" data-step="4">
+            <legend>Preferences</legend>
+            <label
+              ><input type="checkbox" id="prefRemote" /> Prefer remote</label
+            >
+            <label
+              ><input type="checkbox" id="prefFullTime" checked />
+              Full-time</label
+            >
+            <div class="step-actions">
+              <button type="button" class="btn ghost" data-prev>Back</button>
+              <button type="submit" class="btn primary">
+                Get Recommendations
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year3"></span> AI Career Guide</div>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

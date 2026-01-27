@@ -1,0 +1,59 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — AI Career Guide</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="theme-light">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="logo" class="logo" />
+          <span>AI Career Guide</span>
+        </a>
+        <nav>
+          <a href="about.html">About</a>
+          <a href="assessment.html" class="btn-cta">Start Assessment</a>
+          <a href="contact.html">Contact</a>
+          <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+            🌙
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page">
+      <h1>Contact Us</h1>
+      <p class="muted">Have feedback or want a demo? Send a message.</p>
+
+      <form id="contactForm" class="contact-form">
+        <label>
+          Your name
+          <input type="text" id="contactName" required />
+        </label>
+        <label>
+          Email
+          <input type="email" id="contactEmail" required />
+        </label>
+        <label>
+          Message
+          <textarea id="contactMessage" rows="6" required></textarea>
+        </label>
+        <div class="step-actions">
+          <button type="submit" class="btn primary">Send message</button>
+        </div>
+      </form>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year6"></span> AI Career Guide</div>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

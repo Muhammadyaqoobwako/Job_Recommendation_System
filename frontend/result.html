@@ -1,0 +1,70 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Recommendations — AI Career Guide</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="theme-light">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="logo" class="logo" />
+          <span>AI Career Guide</span>
+        </a>
+        <nav>
+          <a href="about.html">About</a>
+          <a href="assessment.html" class="btn-cta">Retake</a>
+          <a href="contact.html">Contact</a>
+          <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+            🌙
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page">
+      <h1>Your Recommended Careers</h1>
+      <p class="muted">
+        These suggestions are generated from your assessment. Click any card for
+        details.
+      </p>
+
+      <section id="resultsGrid" class="grid-3">
+        <!-- JS injects career cards -->
+      </section>
+
+      <section class="insights">
+        <h2>Skill Fit Overview</h2>
+        <div class="mini-cards">
+          <div class="mini-card">
+            <h3>Top Skill Match</h3>
+            <p id="topSkill">—</p>
+          </div>
+          <div class="mini-card">
+            <h3>Suggested Learning</h3>
+            <p id="topCourse">—</p>
+          </div>
+          <div class="mini-card">
+            <h3>Confidence</h3>
+            <p id="confidenceScore">—</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-row">
+        <a href="details.html" class="button">Open Career Roadmap</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year4"></span> AI Career Guide</div>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
