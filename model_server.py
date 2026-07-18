@@ -5,7 +5,8 @@ import re
 import json
 import sys
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
+from sklearn.decomposition import TruncatedSVD
+from sklearn.neighbors import NearestNeighbors
 from flask import Flask, request, jsonify
 try:
     from flask_cors import CORS
@@ -81,7 +82,7 @@ def load_and_prepare(csv_path=CSV_PATH):
 
 # -------- Build TF-IDF matrix ----------
 VEC_PATH = 'tfidf_vectorizer.pkl'
-MATRIX_PATH = 'tfidf_matrix.npz'
+MODEL_PATH = 'job_match_model.pkl'
 METADATA_PATH = 'jobs_meta.pkl'   # store job df
 
 def build_model(df):
@@ -89,31 +90,63 @@ def build_model(df):
     # Use english stop words, ngram range to catch multi-word skills like "machine learning"
     vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1,2), max_features=15000)
     tfidf_matrix = vectorizer.fit_transform(texts)
-    # Save vectorizer and metadata
+    svd = None
+    embeddings = tfidf_matrix
+
+    # Fit a compact semantic model when the vocabulary is large enough.
+    min_dim = min(tfidf_matrix.shape)
+    if min_dim > 2:
+        n_components = min(100, min_dim - 1)
+        if n_components >= 2:
+            svd = TruncatedSVD(n_components=n_components, random_state=42)
+            embeddings = svd.fit_transform(tfidf_matrix)
+
+    neighbors = NearestNeighbors(metric='cosine', algorithm='brute')
+    neighbors.fit(embeddings)
+
+    model_bundle = {
+        'vectorizer': vectorizer,
+        'svd': svd,
+        'neighbors': neighbors,
+        'embeddings': embeddings,
+        'df': df,
+    }
+
+    # Persist the trained recommendation model so the app loads a real trained artifact.
     with open(VEC_PATH, 'wb') as f:
         pickle.dump(vectorizer, f)
     with open(METADATA_PATH, 'wb') as f:
         pickle.dump(df, f)
-    # Save matrix using scipy sparse if needed, here we keep it in memory. If large, save to disk.
-    return vectorizer, tfidf_matrix, df
+    with open(MODEL_PATH, 'wb') as f:
+        pickle.dump(model_bundle, f)
+
+    return model_bundle
 
 # -------- Recommendation function ----------
-def recommend(user_skills_text, vectorizer, tfidf_matrix, df, top_n=10, preferences=None):
+def recommend(user_skills_text, model_bundle, top_n=10, preferences=None):
     """
     user_skills_text: string describing user (skills + interests + optional location or exp)
     preferences: dict e.g. {'location':'karachi','experience':'entry','remote':True}
     """
+    vectorizer = model_bundle['vectorizer']
+    svd = model_bundle['svd']
+    neighbors = model_bundle['neighbors']
+    df = model_bundle['df']
+
     # Clean input and vectorize
     user_text = clean_text(user_skills_text)
     user_vec = vectorizer.transform([user_text])
 
-    # Compute cosine similarities
-    cosine_similarities = linear_kernel(user_vec, tfidf_matrix).flatten()  # shape (n_jobs,)
+    if svd is not None:
+        user_vec = svd.transform(user_vec)
 
-    # Create scores dataframe
+    n_candidates = min(len(df), max(top_n * 3, top_n))
+    distances, candidate_indices = neighbors.kneighbors(user_vec, n_neighbors=n_candidates)
+
+    # Convert the trained semantic distance into a score in the familiar 0-1 range.
     scores = pd.DataFrame({
-        'score': cosine_similarities,
-        'index': np.arange(len(cosine_similarities))
+        'score': 1 - distances.flatten(),
+        'index': candidate_indices.flatten()
     })
     # optional: boost by salary or location or experience match
     if preferences:
@@ -173,8 +206,8 @@ if df is None or len(df) == 0:
     print("ERROR: Loaded dataframe is empty or invalid. Check the CSV and required columns.")
     raise SystemExit(1)
 
-vectorizer, tfidf_matrix, df = build_model(df)
-print("Model ready. Number of jobs:", getattr(tfidf_matrix, 'shape', (0,))[0])
+model_bundle = build_model(df)
+print("Model ready. Number of jobs:", len(df))
 
 # -------- Flask API ----------
 app = Flask(__name__)
@@ -201,8 +234,8 @@ def recommend_endpoint():
     except Exception:
         top_n = 10
 
-    # Build recommendations using existing model
-    recs = recommend(skill, vectorizer, tfidf_matrix, df, top_n=top_n, preferences=preferences)
+    # Build recommendations using the trained semantic model
+    recs = recommend(skill, model_bundle, top_n=top_n, preferences=preferences)
 
     # Convert internal recs to the shape the frontend expects: array of items
     out = []

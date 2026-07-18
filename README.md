@@ -21,7 +21,7 @@ An intelligent AI-powered career recommendation system that analyzes your skills
 
 ### Core Functionality
 
-- **AI-Powered Job Matching**: Uses TF-IDF vectorization and cosine similarity to recommend jobs
+- **AI-Powered Job Matching**: Trains a semantic recommender on the job dataset to suggest matching jobs
 - **Skill Assessment**: Interactive assessment forms to evaluate user skills and preferences
 - **Career Guidance**: Personalized job recommendations based on skills and interests
 - **Real-time Processing**: Fast recommendation engine with quick result generation
@@ -37,8 +37,9 @@ An intelligent AI-powered career recommendation system that analyzes your skills
 
 ### AI/ML Features
 
-- **TF-IDF Vectorization**: Text feature extraction for job descriptions
-- **Cosine Similarity**: Similarity matching between user profiles and job descriptions
+- **Trained Semantic Recommender**: Fits a latent semantic model on the job dataset at startup
+- **TF-IDF Vectorization**: Text feature extraction for job descriptions and skills
+- **Nearest-Neighbor Matching**: Similarity matching between user profiles and job descriptions
 - **Data Preprocessing**: Robust text cleaning and salary parsing
 - **Pickle Serialization**: Model persistence for faster recommendations
 
@@ -50,6 +51,7 @@ Job_Recommendation_System/
 ├── FRONTEND_IMPROVEMENTS.md           # UI/UX enhancement notes
 ├── model_server.py                    # Flask backend server
 ├── job_recommendation_dataset.csv     # Job dataset (51k+ records)
+├── job_match_model.pkl                # Trained semantic recommender artifact
 ├── jobs_meta.pkl                      # Serialized job metadata
 ├── tfidf_vectorizer.pkl               # Pre-trained TF-IDF vectorizer
 ├── frontend/                          # Frontend application
@@ -91,7 +93,7 @@ Job_Recommendation_System/
 ### Data & ML
 
 - **TF-IDF Vectorizer** - Text feature extraction
-- **Cosine Similarity** - Job-candidate matching algorithm
+- **Trained Semantic Model** - Job-candidate matching algorithm
 - **Pandas DataFrames** - Data processing
 
 ## 📦 Installation
@@ -190,6 +192,8 @@ python model_server.py
 ```
 
 Server will start at: `http://localhost:5000`
+
+On startup, the backend trains the semantic recommender from `job_recommendation_dataset.csv` and saves the learned artifacts for faster reuse.
 
 ### Accessing the Frontend
 
